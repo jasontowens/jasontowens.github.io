@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link rel="shortcut icon" href="https://github.com/jasontowens/jasontowens.github.io/blob/master/img/ball.png?raw=true">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Carousel Template for Bootstrap</title>
+
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/aboutUs.css" rel="stylesheet">
+  </head>
+
+   <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">2D Texture Mapping</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li class="active"><a href="Draft1.html">Draft 1</a></li>
+                <li><a href="ReferencesPreview.html">References</a></li>
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template" style="padding-top:50px">
+        <h1 style="color:#FFF">Presentation Draft 1</h1>
+        <h3>Speaker 0</h3>
+        <p>“Hi everybody, we’re team 2D|!2D (maybe draw it on the board for good measure) and we’re here to present on texture mapping and filtering; specifically bilinear and trilinear interpolation, mip-maps, and anisotropic filtering. 
+        To start with, we have speaker 1 to give a quick breakdown of texture mapping before we move into more specific use cases</p>
+        <img style="padding-left:25%"src="img/CheckeredBalls.png">
+
+<h3>Speaker 1</h3>
+<p>Texture mapping, on a basic level, is a way to calculate color, shade, light, etc. for each pixel we by pasting images to our objects in order to create the illusion of realism. This allows us to have much more detailed graphics without having to sacrifice computation time. Something key to understand here is that we are mapping each point on the original texture (or texture coordinate system) to a point on the new image we’re trying to create. A good example of this would be if we’re trying to display a texture somewhere where the lighting in the environment rarely or never changes, we can precompute the texture so we don’t have to calculate individual bit values.
+
+Now, here’s speaker 2, to talk about linear interpolation and how it’s useful in texture filtering.</p>
+<img style="padding-left:25%" src="img/minecraft.jpg">
+
+<h3>Speaker 2, possibly Jason </h3>
+<p>Interpolation is the estimation of a value based on other “nearby” values. It’s extremely useful in computer graphics because we can use it to choose how to both color and texturize a system of texels (we’ll get to that later) based on either a formula or a smaller resolution original map. 
+To explain bilinear interpolation, let’s draw an example on the board. Say you have a pixel map and you want to increase the resolution of it, or “zoom in”, so to speak.
+To do this, we can define any new point we want to create based on the points around it. Here’s an equation, where  u = </p>
+
+<p style="text-align:center; font-size:25px"><em>c(u, v) = (1−u’ )(1−v’ )cij+u’(1−v’ )c(i+1)j+(1−u’)v’ ci(j+1)+u’v’c(i+1)(j+1)</em></p>
+
+ <h3>Speaker 3, possibly Sahar?</h3>
+ <p>Bilinear Interpolation and Trilinear Interpolation are important concepts that are utilized for MIP-mapping. The letters "MIP" in the MIP mapping are an acronym of the Latin phrase multum in parvo, meaning "much in little". It is a texture mapping technique that utilizes multiple texture maps that each provides a deeper depth view level for the viewer as each one is half of the size of the first one. It is beneficial as it implements depth realism to objects but is costly in memory.</p> 
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
