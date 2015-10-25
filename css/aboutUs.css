@@ -20,6 +20,10 @@ h2 {
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
+.dropdown:hover ul.dropdown-menu{
+    display:block;
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
