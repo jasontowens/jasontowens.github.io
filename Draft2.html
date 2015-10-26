@@ -68,7 +68,28 @@ Now, here’s Jason, to talk about linear interpolation and how it’s useful in
 <h3>Jason</h3>
 <p>Interpolation is the estimation of a value based on other “nearby” values. It’s extremely useful in computer graphics because we can use it to choose how to both color and texturize a system of texels (we’ll get to that later) based on either a formula or a smaller resolution original map. 
 To explain bilinear interpolation, let’s draw an example on the board. Say you have a pixel map and you want to increase the resolution of it, or “zoom in”, so to speak.
-To do this, we can define any new point we want to create based on the points around it. Here’s an equation, where  u = </p>
+To do this, we can define any new point we want to create based on the points around it. Here’s an equation, where u and v are dimensions to be mapped. 
+
+where
+c<sub>ij</sub> - top left
+c<sub>(i+1)j</sub> - top right
+c<sub>i(j+1)</sub> - bottom left
+c<sub>(i+1)(j+1)</sub> - bottom right
+
+u’ = unx - floor(unx)      = the decimal portion of unx
+v’ = vnx - floor(vnx)      = the decimal portion of vnx
+
+c(u, v) = (1−u’ )(1−v’ )c<sub>ij</sub>+u’(1−v’ )c<sub>(i+1)j</sub>+(1−u’)v’ c<sub>i(j+1)</sub>+u’v’c<sub>(i+1)(j+1)</sub>
+<img src="img/2Dinterpolation.png">
+
+
+
+3D linear interpolation
+
+c(u, v, w) = (1 − u’ )(1 − v’ )(1 − w’ )c<sub>ijk</sub>+u’ (1 − v’ )(1 − w’ )c<sub>(i+1)jk</sub> + . . .
+</p>
+
+<img src="img/3Dinterpolation.png">
 
 <p style="text-align:center; font-size:25px"><em>c(u, v) = (1−u’ )(1−v’ )cij+u’(1−v’ )c(i+1)j+(1−u’)v’ ci(j+1)+u’v’c(i+1)(j+1)</em></p>
 
