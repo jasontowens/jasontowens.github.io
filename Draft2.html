@@ -123,15 +123,15 @@ To do this, we can define any new point we want to create based on the points ar
 
 <h3>Sahar</h3>
 <p>As already mentioned, 2D Texture mapping is a technique where a 2D image is wrapped (or “mapped”) onto a 3D model. But that’s only the first step to the process! A 2D texture indeed becomes mapped onto the surface of a simple 3D geometric shape, such as a plane, cube, cylinder, and sphere but for a polygonal object, the next step involves a 3D texture (that is created in the first step) of the 2D texture being mapped to a simple geometric shape, to then be mapped onto the surface of an arbitrary shaped object [Reference1], which can be our 3D model, for example. This is known as a two-part mapping method [Reference1].</p>
-<img style="padding-left:25%" src="" alt="[PLACE IMAGE HERE]">
+<img style="padding-left:25%" src="img/UVMapping_Image1.png">
 <p>The above image is an example of this two-part mapping method, and how 2D texture mapping takes place onto a 3D model. These texture mapping images can be used to manipulate a variety of characteristics on a model’s surface like the displacement, bumpiness, transparency, color, and more. But let’s take it a step further. How do we actually go between a 2D image to a 3D object in our computer graphic space?</p>
 <p>Well, in order to apply texture mapping to an object, we must implement texture mapping coordinates, and this is where UV mapping comes into play. Texture mapping coordinates in a texture space are represented as (U, V). For the above example, we talked about a polygonal object and how UV mapping is implemented in a two-part mapping method. But for a NURBS surface, it is a rectangular patch with UV coordinates so naturally its own UV coordinates are utilized for the texture mapping coordinates.</p>
 <p>However, in instances for 3D modeling, a lot of thought has to come into play when accurately texture mapping from the 2D image to the 3D model. We know we utilize UV mapping to project a texture map onto a 3D object, but how does this work? The letters “U” and “V” actually denote the axes of the 2D texture as “X”, “Y”, and “Z” are already used to denote the axes of the 3D object in a modeling space [Reference2].</p>
-<img style="padding-left:25%" src="" alt="[PLACE IMAGE HERE]">
+<img style="padding-left:25%" src="img/UVMapping_Image2.png">
 <p>Above is an image of an object that has two checked sphere objects. The image on the left does not have UV mapping applied to it and the image on the right does have UV mapping applied.</p>
 <p>As you can see, UV mapping is applied per face, not per vertex. This means a shared vertex can have different UV coordinates in each of its triangles, so adjacent triangles can be cut apart  and positioned on different areas of the texture map.</p>
 <p>The UV Mapping process at its simplest requires three steps: unwrapping the mesh, creating the texture, and applying the texture.</p>
-<img style="padding-left:25%" src="" alt="[PLACE IMAGE HERE]">
+<img style="padding-left:25%" src="img/UVMapping_Image3.png">
 <p><a href="http://accad.osu.edu/~midori/Materials/texture_mapping.htm" target="_blank">Reference1</a></p>
 <p><a href="https://www.blender.org/manual/render/blender_render/textures/mapping/uv.html" target="_blank">Reference2</a></p>
 
