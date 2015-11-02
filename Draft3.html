@@ -67,10 +67,32 @@ Now, here’s Jason, to talk about linear interpolation and how it’s useful in
 <img style="padding-left:25%" src="img/minecraft.jpg">
 
 <h3>Jason</h3>
-<p>Interpolation is the estimation of a value based on other “nearby” values. It’s extremely useful in computer graphics because we can use it to choose how to both color and texturize a system of texels (we’ll get to that later) based on either a formula or a smaller resolution original map. 
-To explain bilinear interpolation, let’s draw an example on the board. Say you have a pixel map and you want to increase the resolution of it, or “zoom in”, so to speak.
-To do this, we can define any new point we want to create based on the points around it. Here’s an equation, where u and v are dimensions to be mapped. 
+<p>
+  Interpolation is the estimation of a value based on other “nearby” values. It’s extremely useful in computer graphics because we can use it to choose how to both color and texturize a system of texels (we’ll get to that later) based on either a formula or a smaller resolution original map. 
+<br></br>
+  To start with a simple example 1D interpolation is the estimation of a value between two points based on the value of those two points and the distance from the third point and each of the other points. If the new point is closer to one point than the other, its value will be closer to that point than the other's, and vice versa. 
 
+</p>
+<br></br>
+<div class = "row">
+  <img src="img/LinearInterpolation.png"></img>
+  <p>1D interpolation</p>
+</div>
+
+
+
+<p>
+<br></br>
+For instance, let's assume that the dot at the bottom left represents the number 10, and the dot at the top right represents the number 100. Every point on the blue line is a transition from 10 to 100. The (x,y) value plotted looks roughly halfway between the two, so we could fairly easily say its around 55. This is the idea behind interpolation.
+
+<br></br>
+  To explain bilinear interpolation, let’s draw an example on the board. Say you have a pixel map and you want to increase the resolution of it, or “zoom in”, so to speak.
+<br></br>
+  To do this, we can define any new point we want to create based on the points around it. This new point is somewhere in between the 4 nearest pixels. (If we're just trying to double the resolution, it would be dead-center, and pretty easy to calculate. 
+  <br></br>
+  Here’s an equation to calculate , where u and v are dimensions to be mapped. 
+
+<br></br>
 where
 c<sub>ij</sub> - top left
 c<sub>(i+1)j</sub> - top right
@@ -78,13 +100,17 @@ c<sub>i(j+1)</sub> - bottom left
 c<sub>(i+1)(j+1)</sub> - bottom right
 
 u’ = unx - floor(unx)      = the decimal portion of unx
+<br></br>
 v’ = vnx - floor(vnx)      = the decimal portion of vnx
 
+<br></br>
 c(u, v) = (1−u’ )(1−v’ )c<sub>ij</sub>+u’(1−v’ )c<sub>(i+1)j</sub>+(1−u’)v’ c<sub>i(j+1)</sub>+u’v’c<sub>(i+1)(j+1)</sub>
 
+<br></br>
 </p>
 
-<div class = "col-md-6">
+
+<div class = "row">
   <img src="img/2Dinterpolation.png"></img>
   <p>2D interpolation</p>
 </div>
@@ -92,20 +118,18 @@ c(u, v) = (1−u’ )(1−v’ )c<sub>ij</sub>+u’(1−v’ )c<sub>(i+1)j</sub>
 
 <p>
 
-3D linear interpolation
 
-c(u, v, w) = (1 − u’ )(1 − v’ )(1 − w’ )c<sub>ijk</sub>+u’ (1 − v’ )(1 − w’ )c<sub>(i+1)jk</sub> + . . .
 </p>
 
 
 
-<div class = "col-md-6">
+<div class = "row">
   <img src="img/3Dinterpolation.png">
-  <p>3D interpolation</p>
+  <p>3D linear interpolation
+
+c(u, v, w) = (1 − u’ )(1 − v’ )(1 − w’ )c<sub>ijk</sub>+u’ (1 − v’ )(1 − w’ )c<sub>(i+1)jk</sub> + . . .</p>
 </div>
-
-
-<p style="text-align:center; font-size:25px"><em>c(u, v) = (1−u’ )(1−v’ )cij+u’(1−v’ )c(i+1)j+(1−u’)v’ ci(j+1)+u’v’c(i+1)(j+1)</em></p>
+</p>
 
  <h3>Leslie</h3>
  <p><strong>MIP</strong> (latin: “multum in parvo” aka many things in a small place) <strong>Maps! (or mipmaps)</strong></p>
