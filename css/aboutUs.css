@@ -20,6 +20,10 @@ img {
   padding-bottom: 10px;
 }
 
+li:hover {
+    cursor: pointer;
+}
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
