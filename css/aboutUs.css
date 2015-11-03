@@ -22,7 +22,7 @@ img {
 
 li:hover {
     cursor: pointer;
-    background-color: red;
+    color: red;
 }
 
 /* CUSTOMIZE THE NAVBAR
