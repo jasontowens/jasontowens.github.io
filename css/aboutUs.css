@@ -28,6 +28,10 @@ img {
     display:block;
 }
 
+.dropdown-menu>li>a:hover{
+  background-color: rgba(0,0,100,0.2);
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
