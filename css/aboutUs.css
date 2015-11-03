@@ -20,10 +20,6 @@ img {
   padding-bottom: 10px;
 }
 
-li:hover {
-    cursor: pointer;
-    color: red;
-}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
