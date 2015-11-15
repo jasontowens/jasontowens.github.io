@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scripts | Draft 3</title>
+    <title>Scripts | FinalDraft</title>
 
    <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -34,6 +34,7 @@
                 <li class="active dropdown">
                     <a data-toggle="dropdown">Scripts <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                         <li><a href= "FinalDraft.html">FinalDraft</a></li>
                          <li><a href="Draft3.html">Draft 3</a></li>
                          <li><a href="Draft2.html">Draft 2</a></li>
                          <li><a href="Draft1.html">Draft 1</a></li>
@@ -55,158 +56,8 @@
     <div class="container">
 
       <div class="starter-template" style="padding-top:50px">
-        <h1 style="color:#FFF">Presentation Draft 3</h1>
-        <h3>Speaker 0</h3>
-        <p>“Hi everybody, we’re team 2D|!2D (maybe draw it on the board for good measure) and we’re here to present on texture mapping and filtering; specifically bilinear and trilinear interpolation, mip-maps, and anisotropic filtering. 
-        To start with, we have speaker 1 to give a quick breakdown of texture mapping before we move into more specific use cases</p>
-        <img style="padding-left:25%"src="img/CheckeredBalls.png">
-
-<h3>Speaker 1</h3>
-<p>Texture mapping, on a basic level, is a way to calculate color, shade, light, etc. for each pixel we by pasting images to our objects in order to create the illusion of realism. This allows us to have much more detailed graphics without having to sacrifice computation time. Something key to understand here is that we are mapping each point on the original texture (or texture coordinate system) to a point on the new image we’re trying to create. A good example of this would be if we’re trying to display a texture somewhere where the lighting in the environment rarely or never changes, we can precompute the texture so we don’t have to calculate individual bit values.
-
-Now, here’s Jason, to talk about linear interpolation and how it’s useful in texture filtering.</p>
-<img style="padding-left:25%" src="img/minecraft.jpg">
-
-<h3>Jason</h3>
-<p>
-  Interpolation is the estimation of a value based on other “nearby” values. It’s extremely useful in computer graphics because we can use it to choose how to both color and texturize a system of texels (we’ll get to that later) based on either a formula or a smaller resolution original map. 
-<br></br>
-  To start with a simple example 1D interpolation is the estimation of a value between two points based on the value of those two points and the distance from the third point and each of the other points. If the new point is closer to one point than the other, its value will be closer to that point than the other's, and vice versa. 
-
-</p>
-<br></br>
-<div class = "row">
-  <img src="img/LinearInterpolation.png"></img>
-  <p>1D interpolation</p>
-</div>
-
-
-
-<p>
-<br></br>
-For instance, let's assume that the dot at the bottom left represents the number 10, and the dot at the top right represents the number 100. Every point on the blue line is a transition from 10 to 100. The (x,y) value plotted looks roughly halfway between the two, so we could fairly easily say its around 55. This is the idea behind interpolation.
-
-<br></br>
-  To explain bilinear interpolation, let’s draw an example on the board. Say you have a pixel map and you want to increase the resolution of it, or “zoom in”, so to speak.
-<br></br>
-  To do this, we can define any new point we want to create based on the points around it. This new point is somewhere in between the 4 nearest pixels. (If we're just trying to double the resolution, it would be dead-center, and pretty easy to calculate. 
-  <br></br>
-  Here’s an equation to calculate , where u and v are dimensions to be mapped. 
-
-<br></br>
-where
-c<sub>ij</sub> - top left
-c<sub>(i+1)j</sub> - top right
-c<sub>i(j+1)</sub> - bottom left
-c<sub>(i+1)(j+1)</sub> - bottom right
-
-u’ = unx - floor(unx)      = the decimal portion of unx
-<br></br>
-v’ = vnx - floor(vnx)      = the decimal portion of vnx
-
-<br></br>
-c(u, v) = (1−u’ )(1−v’ )c<sub>ij</sub>+u’(1−v’ )c<sub>(i+1)j</sub>+(1−u’)v’ c<sub>i(j+1)</sub>+u’v’c<sub>(i+1)(j+1)</sub>
-
-<br></br>
-</p>
-
-
-<div class = "row">
-  <img src="img/2Dinterpolation.png"></img>
-  <p>2D interpolation</p>
-</div>
-
-
-<p>
-
-
-</p>
-
-
-
-<div class = "row">
-  <img src="img/3Dinterpolation.png">
-  <p>3D linear interpolation
-
-c(u, v, w) = (1 − u’ )(1 − v’ )(1 − w’ )c<sub>ijk</sub>+u’ (1 − v’ )(1 − w’ )c<sub>(i+1)jk</sub> + . . .</p>
-</div>
-</p>
-
- <h3>Leslie</h3>
- <p><strong>MIP</strong> (latin: “multum in parvo” aka many things in a small place) <strong>Maps! (or mipmaps)</strong></p>
- <p>What’s the problem with bilinear filtering?  Recall that bilinear filtering rounds to the closest matching location in the source pixel grid for each destination pixel location, then it interpolates between 4 nearby pixel values.  While this creates a smoother (but blurrier) aliasing effect, scaling an image to less than half its size results in some source pixels being skipped. (maybe talk about what happens when image is scaled to a single pixel - what color should the pixel be? Plus averaging all the colors is too expensive!)  This creates noisier aliasing.  So what method can we use to create smoother texture maps?  We want image resolutions that are not too high due to aliasing effects but not too low due to a loss of detail.  So what about images of varying resolutions depending on the distance between the object and viewpoint?
-</p> 
-<p>Let’s talk about mipmaps! A mipmap is a texture image that is shrunken down to a progressively smaller resolution.  These images form a sequence of textures that help create smoother antialiasing and the illusions of depth and perspective in 2D texture mapping (see example images below).  These images are precalculated, meaning the filtered detail is done before the image is fully rendered, removing artifacts and stray aliasing.</p>
-<div class="row">
-  <div class="col-md-6">
-    <img src="img/hill.png">
-    <p>No mipmapping - noisy aliasing</p>
-  </div>
-  <div class="col-md-6">
-    <img src="img/hillf.png">
-    <p>with mipmapping - smoother aliasing</p>
-  </div>
-</div>
-<p>Each image in the mipmap is half the size of the previous image, thus decreasing by a power of 2.  For example (talk about images):</p>
-<div class="row">
-  <div class="col-md-6">
-    <ul>
-      <li>Original = 256x256</li>
-      <li>Mip 1 = 128x128</li>
-      <li>Mip 2 = 64x64</li>
-      <li>Mip 3 = 32x32</li>
-      <li>Mip 4 = 16x16</li>
-      <li>Mip 5 = 8x8</li>
-      <li>Mip 6 = 4x4</li>
-      <li>Mip 7 = 2x2</li>
-      <li>Mip 8 = 1x1</li>
-    </ul>
-  </div>
-  <div class="col-md-6">
-    <img src="" alt="[PLACE IMAGE HERE]"</div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <p>Images: mipmapping can contribute to creating spatial aliasing, as seen in these checkered images</p>
-  </div>
-  <div class="col-md-6">
-    <img src="img/mipmap.png">
-  </div>
-</div>
-<p>Besides creating smoother anti-aliased images, what are some not-so-obvious perks of mipmaps? The first is that mipmaps do not take up much additional memory, in comparison to bilinear filtering, for instance.  Mipmaps take up only ⅓ additional memory space due to the power of powers (¼ original size + 1/16 original size + 1/64 original size + … + 1/(4^n) = ⅓).  Rendering times are also decreased because mipmap levels are easily cached instead of going back to main memory to render most destination pixels.
-</p>
-<p><a href="http://blogs.msdn.com/b/shawnhar/archive/2009/09/14/texture-filtering-mipmaps.aspx" target="_blank">Reference1</a></p>
-<p><a href="https://graphics.ethz.ch/teaching/former/vc_master_06/Downloads/Mipmaps_1.pdf" target="_blank">Reference2</a></p>
-<p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb206251(v=vs.85).aspx" target="_blank">Reference3</a></p>
-
-<h3>Sahar</h3>
-<p>As already mentioned, 2D Texture mapping is a technique where a 2D image is wrapped (or “mapped”) onto a 3D model. The 2D texture mapping can be mapped onto the surface of a simple 3D geometric shape, such as a plane, cube, cylinder, or sphere, or it can be mapped onto a more generalized curve or surface such as a NURB which we will discuss later. But that’s only the first step to the process! A 2D texture indeed becomes mapped onto the surface of a defined shape in our first step, but there are some things to consider when we are talking about a polygonal object, and that leads to the second step which involves a 3D texture (and that 3D texture is actually created in the process described in the first step when the 2D texture is mapped to the 3D shape’s surface) to then be mapped onto the surface of an arbitrary shaped object [Reference1], which can be our 3D model, for example. This is known as a two-part mapping method [Reference1]. </p>
-<img style="padding-left:25%" src="img/UVMapping_Image1.png">
-<p>
-The above image is an example of this two-part mapping method, and how 2D texture mapping takes place onto a 3D model. These texture mapping images can be used to manipulate a variety of characteristics on a model’s surface like the displacement, bumpiness, transparency, color, and more. But let’s take it a step further. How do we actually go between a 2D image to a 3D object in our computer graphic space?  </p>
-<p>Well, in order to apply texture mapping to an object, we must implement texture mapping coordinates, and this is where UV mapping comes into play. Texture mapping coordinates in a texture space are represented as (U, V). For the above example, we talked about a polygonal object and how UV mapping is implemented in a two-part mapping method. But for a NURBS surface, it is much different. A NURBS surface stands for non-uniform rational B-spline which is a mathematical model that is used to represent various surfaces and curbs. For this type of surface, it is essentially a rectangular patch with UV coordinates so naturally its own UV coordinates are utilized for the texture mapping coordinates, but for polygonal objects, two-part mapping techniques need to be conducted because the number of vertices that a polygon has are arbitrary and each vertex needs to have its own texture mapping coordinates to be created.
-</p>
-<p>However, in instances for 3D modeling, a lot of thought has to come into play when accurately texture mapping from the 2D image to the 3D model. We know we utilize UV mapping to project a texture map onto a 3D object, but how does this work? The letters “U” and “V” actually denote the axes of the 2D texture as “X” and “Y”. “Z” comes into play when denoting the axes we are referring to the graphical model of the object in a 3D modeling space [Reference2]. </p>
-<img style="padding-left:25%" src="img/UVMapping_Image2.png">
-<p>Above is an image of an object that has two checked sphere objects. The image on the left does not have UV mapping applied to it and the image on the right does have UV mapping applied. This is an example of how UV mapping is important because it allows us to apply more details to our texture maps rather than just using the built in rendering system to apply procedural materials and textures as they can not always create that high level of realism that we are looking for when we try to create our finalized product. </p>
-<img style="padding-left:25%" src="img/UVMapping_Image3.png">
-<p>How does one accomplish this task though of creating the texture mapping coordinates? How do we go from taking the normals of the “X” and “Y” and creating the texture mapping coordinates “U” and “V” and map it again to an object in an “X”, “Y”, and “Z” in an 3D space?</p>
-<p>Well, the easiest way to think of this is looking at the above image of the box. If you were to cut the seams of the box and lay it out flat, you would be able to see the image in 2D dimensions where the “U” direction is the horizontal direction and “V” is the vertical direction and these are known as our texture mapping coordinates and when the box is put back together again, each UV location on the texture is transferred to an XYZ location on the box [Reference 2]. 3D modelers, engineers, or other professions that utilize texture mapping normally use a modeling package that includes a UV Image Editor in which you can designate what seams or edges you would like to cut or sew together and this occurs in the UV unwrapping process. </p>
-<img style="padding-left:25%" src="img/UVMapping_Image4.png">
-<p>Here is an example of what the 3D object may look like in a UV space. As you can see, the overall size and shape of the marked faces are looking quite different in each space and each  UV mapping is applied per face, not per vertex. This means a shared vertex can have different UV coordinates in each of its triangles, so adjacent triangles can be cut apart  and positioned on different areas of the texture map.</p>
-<p>In conclusion, texture mapping is an intricate process in which a 2D image is wrapped onto a 3D model and the UV Mapping process at its simplest requires three steps: unwrapping the mesh, creating the texture, and applying the texture. UV Mapping plays a huge deal in helping artists in their different fields and professions apply these unique texture maps to a 3D model by implementing a process of cutting and sewing the normals of an 3D object, converting them to UV coordinates, and wrapping the new texture map to the model in the 3D space which can be customized further by a series of photo-image editing or other techniques that can further enhance the new model.</p>
-<p><a href="http://accad.osu.edu/~midori/Materials/texture_mapping.htm" target="_blank">Reference1</a></p>
-<p><a href="https://www.blender.org/manual/render/blender_render/textures/mapping/uv.html" target="_blank">Reference2</a></p>
-
-<h3>Justin</h3>
-<p>Hi guys, so you have already gotten the gist of filtering so far. But, I’m going to further that knowledge by talking about anisotropic filtering. The difference between anisotropic filtering from bilinear and trilinear filtering is in its name. Bilinear and trilinear filtering are isotropic, meaning that the filtering works the same in all directions. However, it is not always the case that we want filtering to work this way. For example, in many modern games the player usually views things that eventually fade out in the distance. If a game were to use bilinear or trilinear filtering methods to generate the graphics for the game, the image will end up looking blurry. Here is an image of just the case. To fix this the game requires a non-isotropic filtering pattern. Hence, we use anisotropic filtering. How it works is that it takes in textures and surfaces that are far away or at high angles and projects the textures as trapezoids or rectangles over squares. This process works on a base 2 level system: 2x, 4x, 8x, 16x. Anisotropic filtering can usually go up to 16x without harshly affecting the performance. Of course, if we had infinite processing power then textures using this filtering can be generated at much higher levels.
-</p>
-<p>Will add more...</p>
-
-<img style="padding-left:25%" src="img/filtering.jpg">
-<p><a href="http://www.tweakguides.com/Graphics_11.html" target="_blank">Reference1</a></p>
+        <h1 style="color:#FFF">Final Draft</h1>
+        
 
       </div>
       
